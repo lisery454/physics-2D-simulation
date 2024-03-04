@@ -1,0 +1,42 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:PhysicsEngine2D.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        d:DesignWidth="1280"
+        d:DesignHeight="720"
+        Background="White"
+        Width="1280"
+        Height="720"
+        KeyDown="Window_OnKeyDown"
+        KeyUp="Window_OnKeyUp"
+        x:Class="PhysicsEngine2D.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="PhysicsEngine2D">
+
+  <Design.DataContext>
+    <vm:MainWindowViewModel />
+  </Design.DataContext>
+
+  <Grid Width="{Binding Width}"
+        Height="{Binding Height}">
+    <Grid.Background>
+      <SolidColorBrush>
+        <SolidColorBrush.Color>#eeeeee</SolidColorBrush.Color>
+      </SolidColorBrush>
+    </Grid.Background>
+    <Image Stretch="Uniform"
+           PointerPressed="Image_OnPointerPressed"
+           PointerMoved="Image_OnPointerMoved"
+           PointerReleased="Image_OnPointerReleased"
+           Height="{Binding Height}"
+           Width="{Binding Width}">
+      <DrawingImage Drawing="{Binding Image}" />
+    </Image>
+  </Grid>
+
+
+</Window>
