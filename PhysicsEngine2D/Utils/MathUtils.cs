@@ -66,4 +66,18 @@ public class MathUtils
 
         return rotated;
     }
+
+    public static List<Vector2> CalcNormals(List<Vector2> vertices)
+    {
+        var normals = new List<Vector2>();
+        for (var i = 0; i < vertices.Count; i++)
+        {
+            var direction = vertices[IndexNext(i, vertices.Count)] - vertices[i];
+            direction.Normalize();
+            var normal = direction.GetNormal();
+            normals.Add(normal);
+        }
+
+        return normals;
+    }
 }

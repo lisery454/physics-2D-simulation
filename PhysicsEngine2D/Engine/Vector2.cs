@@ -64,6 +64,11 @@ public class Vector2
         return new Vector2(v.X * scale, v.Y * scale);
     }
 
+    public static Vector2 operator *(float scale, Vector2 v)
+    {
+        return new Vector2(v.X * scale, v.Y * scale);
+    }
+
     public float Cross(Vector2 vec)
     {
         return X * vec.Y - Y * vec.X;

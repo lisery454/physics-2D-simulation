@@ -6,23 +6,23 @@ namespace PhysicsEngine2D.Engine.Shapes;
 
 public class Circle : Shape
 {
-    public Vector2 Position { get; }
+    public Vector2 Position => Centroid;
+
     public float Radius { get; }
 
-    public Circle(Vector2 position, float radius) : base(vertices: new List<Vector2>
+    public Circle(Vector2 position, float radius, SKColor color) : base(vertices: new List<Vector2>
     {
-        new (position.X, position.Y),
-        new (position.X + radius, position.Y),
-    })
+        new(position.X, position.Y),
+        new(position.X + radius, position.Y),
+    }, color)
     {
-        Position = position;
         Radius = radius;
         Centroid = position;
     }
 
-    public override void Draw(SKCanvas canvas, SKColor color)
+    public override void Draw(SKCanvas canvas)
     {
-        base.Draw(canvas, color);
-        DrawUtils.DrawStrokePoint(canvas, Position, Radius, color);
+        base.Draw(canvas);
+        DrawUtils.DrawStrokePoint(canvas, Position, Radius, Color);
     }
 }

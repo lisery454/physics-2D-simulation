@@ -9,22 +9,25 @@ public abstract class Shape
     protected List<Vector2> _vertices;
     public Vector2 Centroid { get; protected set; }
 
-    protected Shape(List<Vector2> vertices)
+    public SKColor Color { get; set; }
+
+    protected Shape(List<Vector2> vertices, SKColor color)
     {
         _vertices = vertices;
         Centroid = MathUtils.CalcCentroid(vertices);
+        Color = color;
     }
 
-    public virtual void Draw(SKCanvas canvas, SKColor color)
+    public virtual void Draw(SKCanvas canvas)
     {
         for (var i = 1; i < _vertices.Count; i++)
         {
-            DrawUtils.DrawLine(canvas, _vertices[i - 1], _vertices[i], color);
+            DrawUtils.DrawLine(canvas, _vertices[i - 1], _vertices[i], Color);
         }
 
-        DrawUtils.DrawLine(canvas, _vertices[^1], _vertices[0], color);
-        
-        DrawUtils.DrawPoint(canvas, Centroid,3, color);
+        DrawUtils.DrawLine(canvas, _vertices[^1], _vertices[0], Color);
+
+        DrawUtils.DrawPoint(canvas, Centroid, 3, Color);
     }
 
     public virtual void Move(Vector2 delta)
@@ -36,7 +39,7 @@ public abstract class Shape
 
         Centroid += delta;
     }
-    
+
     public virtual void Rotate(float deltaRadians)
     {
         for (var i = 0; i < _vertices.Count; i++)
